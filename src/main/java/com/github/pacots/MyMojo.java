@@ -90,8 +90,4 @@ public class MyMojo
             throw new MojoExecutionException("Error en tsDetect", ex);
         }
     }
-
-    private void executeJarWithCsv(File csvFile) throws MojoExecutionException {
-        
-    }
 }
