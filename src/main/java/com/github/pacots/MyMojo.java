@@ -84,10 +84,26 @@ public class MyMojo
                 throw new MojoExecutionException("Error en tsDetect " + exitStatus);
             } else {
                 getLog().info("Ejecución terminada " + exitStatus);
+                if (workingDir.exists()) {
+                    try (Scanner scanner = new Scanner(workingDir)) {
+                        getLog().info("Test smells:");
+                        while (scanner.hasNextLine()) {
+                            String line = scanner.nextLine();
+                            getLog().info(line);
+                        }
+                    } catch (IOException e) {
+                        throw new MojoExecutionException("Error al leer el CSV generado", e);
+                    }
+                } else {
+                    throw new MojoExecutionException("El archivo CSV generado no se encuentra: " + workingDir.getAbsolutePath());
+                }
             }
 
         } catch (IOException | InterruptedException ex) {
             throw new MojoExecutionException("Error en tsDetect", ex);
         }
+
+        File generatedCsv = new File("./", "tests.csv");
+        
     }
 }
