@@ -33,7 +33,7 @@ import java.io.IOException;
  * 
  * @phase process-sources
  */
-@Mojo(name="tsDetect-plugin", defaultPhase = LifecyclePhase.TEST)
+@Mojo(name="tsDetect", defaultPhase = LifecyclePhase.TEST)
 public class MyMojo
     extends AbstractMojo
 {
